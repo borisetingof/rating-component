@@ -86,7 +86,6 @@ class Style {
 
       button: {
         fontSize:     em(14),
-        fontWeight:   300,
         fontFamily:   skin.font_family,
         padding:      `${em(4)} ${em(27.5)} ${em(6)}`,
         marginTop:    em(16),
