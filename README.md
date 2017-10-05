@@ -52,7 +52,7 @@ class App extends React.Component ({
 ### `<RatingComponent />` Props
 
 #### rating _(default: 0)_
-Set initial rating between `0` and `5` inclusive. Rating set to `0` means `no rating`. `Apply` button is disabled when rating equals `0` and is enabled when rating is greater than `0`. Initial rating can be set for both interactive and non-interactive states.
+Set initial rating between `0` and `5` inclusive. Rating set to `0` means `no rating`. `Apply` button is disabled when rating equals to `0` and is enabled when rating is greater than `0`. Initial rating can be set for both interactive and non-interactive states.
 
 Example:
 ```js
@@ -60,7 +60,7 @@ Example:
 ```
 
 #### callback _(function)_
-Set callback function executed when `Apply` button is pressed. Callback function can be used to process/store the selected rating.
+The component is rendered as interactive widget when the callback function is defined. Callback function gets executed with `rating` passed as a parameter along with `success` and `error` hooks when `Apply` button is pressed. Callback function can be used to process/store the selected rating.
 
 Example:
 ```js
@@ -72,7 +72,6 @@ Example:
     }, 1000);
 }}/>
 ```
-The component is rendered as interactive widget when the callback function is defined.
 
 #### skin _(object)_
 Set custom skin.
