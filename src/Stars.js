@@ -18,11 +18,11 @@ class Stars extends Component {
     super(props);
 
     this.stars = [
-      {label: 'One star', checked: false},
-      {label: 'Two stars', checked: false},
-      {label: 'Three stars', checked: false},
-      {label: 'Four stars', checked: false},
-      {label: 'Five stars', checked: false},
+      {label: 'One star'},
+      {label: 'Two stars'},
+      {label: 'Three stars'},
+      {label: 'Four stars'},
+      {label: 'Five stars'},
     ];
 
     this.state = {
@@ -76,12 +76,11 @@ class Stars extends Component {
   render() {
     let interactive = this.props.interactive,
         enabled     = this.props.action,
-        label       = interactive && enabled ? 'rate_this_product' : null,
         role        = (role) => {
           return interactive && enabled ? role : null
         },
         checked     = (index) => {
-          return interactive && enabled ? index === this.state.highlighted : null;
+          return interactive && enabled ? index === this.state.rating : null;
         },
         tabIndex    = (index) => {
           let result;
@@ -108,7 +107,7 @@ class Stars extends Component {
           onMouseDown={() => this.mouse_focus_on = true}
           onFocus={onFocus}
           tabIndex={interactive && enabled && !this.state.focus ? 0 : null}
-          aria-labelledby={label}>
+          aria-labelledby={interactive && enabled ? 'rate_this_product' : null}>
 
         {this.stars.map((params, index) => (
           <li role={role('radio')}
