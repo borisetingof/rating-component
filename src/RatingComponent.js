@@ -15,6 +15,7 @@ class RatingComponent extends Component {
   static propTypes = {
     rating:  PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
     service: PropTypes.func,
+    skin:    PropTypes.object,
   };
 
   constructor(props) {
