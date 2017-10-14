@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RatingComponent from './RatingComponent';
+import Ragdoll from './ragdoll';
+import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 let callback    = (rating, success, error) => {
@@ -24,5 +26,6 @@ let callback    = (rating, success, error) => {
       font_family: '"Helvetica Neue", Helvetica, Arial, sans-serif'
     };
 
-ReactDOM.render(<RatingComponent rating={0} callback={callback} skin={custom_skin}/>, document.getElementById('root'));
+// ReactDOM.render(<RatingComponent rating={0} callback={callback} skin={custom_skin}/>, document.getElementById('root'));
+ReactDOM.render(<Ragdoll />, document.getElementById('root'));
 registerServiceWorker();
