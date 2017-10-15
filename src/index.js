@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RatingComponent from './RatingComponent';
-import Ragdoll from './ragdoll';
+import Ragdolls from './ragdolls';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -27,5 +27,5 @@ let callback    = (rating, success, error) => {
     };
 
 // ReactDOM.render(<RatingComponent rating={0} callback={callback} skin={custom_skin}/>, document.getElementById('root'));
-ReactDOM.render(<Ragdoll />, document.getElementById('root'));
+ReactDOM.render(<Ragdolls />, document.getElementById('root'));
 registerServiceWorker();
