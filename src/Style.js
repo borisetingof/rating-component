@@ -23,7 +23,8 @@ let setStyle = (skin) => {
 
   return {
     container: {
-      fontSize: '16px'
+      fontSize: '16px',
+      // display: 'none'
     },
 
     title: {
@@ -88,6 +89,18 @@ let setStyle = (skin) => {
           background: 'rgba(255, 255, 255, 0.1)'
         }
       },
+    },
+
+    info: {
+      curtain: {
+        background: '#ffffff',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        transform:   'skew(-15deg)'
+      }
     }
   }
 }, instance;

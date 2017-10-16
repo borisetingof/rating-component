@@ -16,13 +16,9 @@ class Ragdolls extends Component {
       x: 0,
       y: 0
     };
-    this.dancerDrag = null;
-    this.pointDrag  = null;
 
     this.resize = this.resize.bind(this);
-    this.move   = this.move.bind(this);
-    this.down   = this.down.bind(this);
-    this.up     = this.up.bind(this);
+
     this.run    = this.run.bind(this);
 
     this.state = {
@@ -44,28 +40,18 @@ class Ragdolls extends Component {
         })
       }
 
-
       this.setState({
         data: data
       });
 
       this.dataReady();
-
-      console.log('parsed json', json.modular_content)
     }).catch((ex) => {
-      console.log('parsing failed', ex)
     })
   }
 
   dataReady() {
     this.ctx = this.canvas.getContext('2d');
-
-    $(window)
-      .on('resize', this.resize)
-      .on('mousemove touchmove', this.move)
-      .on('mousedown touchstart', this.down)
-      .on('mouseup touchend', this.up);
-
+    $(window).on('resize', this.resize);
     this.resize();
 
     // ---- instanciate ragdolls ----
@@ -76,40 +62,11 @@ class Ragdolls extends Component {
           80,
           4,
           (i + 2) * this.canvas.width / 9,
-          this.canvas.height * this.ground - 340
+          this.canvas.height * this.ground - 340,
         )
       );
     }
     this.run();
-  }
-
-  move(e) {
-    let touchMode = e.targetTouches,
-        pointer   = touchMode ? touchMode[0] : e;
-
-    this.pointer.x = pointer.clientX;
-    this.pointer.y = pointer.clientY;
-
-  }
-
-  down(e) {
-    this.move(e);
-    for (let dancer of this.dancers) {
-      for (let point of dancer.points) {
-        let dx = this.pointer.x - point.x;
-        let dy = this.pointer.y - point.y;
-        let d  = Math.sqrt(dx * dx + dy * dy);
-        if (d < 60) {
-          this.dancerDrag = dancer;
-          this.pointDrag  = point;
-          dancer.frame    = 0;
-        }
-      }
-    }
-  }
-
-  up() {
-    this.dancerDrag = null;
   }
 
   resize() {
@@ -124,11 +81,6 @@ class Ragdolls extends Component {
   run() {
     requestAnimationFrame(this.run);
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    /*
-     this.ctx.fillStyle = "#222";
-     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height * 0.15);
-     this.ctx.fillRect(0, this.canvas.height * 0.85, this.canvas.width, this.canvas.height * 0.15);
-     */
     for (let dancer of this.dancers) {
       dancer.update(this.canvas.height * this.ground);
       dancer.draw(this.ctx);
@@ -145,30 +97,39 @@ class Ragdolls extends Component {
 
   render() {
     return (
+      <div>
 
-      <div style={[this.style.container]}>
-        <canvas ref={(el) => {
-          this.canvas = el;
-        }}/>
+        <div style={[this.style.container]}>
+          <canvas ref={(el) => {
+            this.canvas = el;
+          }}/>
 
-        <h1 style={this.style.title}>Lobster</h1>
+          <h1 style={this.style.title}>Lobster</h1>
 
-        {this.state.data && <ul style={[this.style.teamlist]}>
-          {this.state.data.map((params, index) => (
-            <li key={index.toString()}
-                onMouseOver={this.onMouseOver.bind(this, index)}
-                onMouseOut={this.onMouseOut.bind(this, index)}
-                style={[this.style.teamlist.item]}>
-              <span style={[this.style.teamlist.item.firstname]}>{params.firstname}</span>
-              <br/>
-              <span style={[this.style.teamlist.item.surname]}>{params.surname}</span>
-              <div key={index.toString() + 'separator'} style={this.style.teamlist.separator}></div>
-            </li>
-          ))}
-        </ul>}
+          {this.state.data && <ul style={[this.style.teamlist]}>
+            {this.state.data.map((params, index) => (
+              <li key={index.toString()}
+                  onMouseOver={this.onMouseOver.bind(this, index)}
+                  onMouseOut={this.onMouseOut.bind(this, index)}
+                  style={[this.style.teamlist.item]}>
+                <span style={[this.style.teamlist.item.firstname]}>{params.firstname}</span>
+                <br/>
+                <span style={[this.style.teamlist.item.surname]}>{params.surname}</span>
+                <div key={index.toString() + 'separator'} style={this.style.teamlist.separator}></div>
+              </li>
+            ))}
+          </ul>}
+        </div>
 
-
+{/*        <div style={this.style.info}>
+          <div style={this.style.info.curtain}/>
+          <h1>Title</h1>
+          <p>Description</p>
+          <a href="#">Link</a>
+        </div>*/}
       </div>
+
+
     )
   }
 }
