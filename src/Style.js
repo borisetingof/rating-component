@@ -1,5 +1,5 @@
-const DEFAULT_SKIN = {
-  color:       {
+const DEFAULT_THEME = {
+  color: {
     title:                '#4A4A4A',
     active_star:          '#4A90E2',
     inactive_star:        '#E3E6E9',
@@ -9,153 +9,93 @@ const DEFAULT_SKIN = {
     border:               '#D2D0D2',
     shadow:               '#DBDBDB',
   },
-  font_family: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+  font:  {
+    lobster: '"Lobster", cursive',
+    ubuntu:  '"Ubuntu", sans-serif'
+  }
 };
 
-class Style {
+let setStyle = (skin) => {
+  let default_pixel_size = 16,
+      em                 = (px) => {
+        return px / default_pixel_size + 'rem';
+      };
 
-  init(skin = DEFAULT_SKIN) {
-    this._theme = Style._setTheme(skin);
-    return this._theme;
-  }
+  return {
+    container: {
+      fontSize: '16px'
+    },
 
-  getTheme() {
-    this._theme = this._theme || this.init();
-    return this._theme;
-  }
+    title: {
+      padding:      0,
+      marginBottom: em(100),
+      fontSize:     em(280),
+      lineHeight:   em(280),
+      fontFamily:   skin.font.lobster,
+      textAlign:    'center',
+      color:        '#ffdd64',
+    },
 
-  static _setTheme(skin) {
-    let default_pixel_size = 16,
-        em                 = (px) => {
-          return px / default_pixel_size + 'em';
-        };
+    teamlist: {
+      margin:  0,
+      padding: 0,
+      outline: 'none',
 
-    return {
-      width:      em(299),
-      fontSize:   '1em',
-      fontFamily: skin.font_family,
-      color:      skin.color.title,
+      position:  'relative',
+      textAlign: 'center',
+      color:     '#ffffff',
 
-      interactive: {
-        width: em(225),
-      },
-
-      container: {
-        padding:      `${em(24)} ${em(24)} ${em(23)}`,
-        borderRadius: em(5),
-        border:       `${em(1)} solid ${skin.color.border}`,
-        whiteSpace:   'nowrap',
-
-        interactive: {
-          boxShadow: `0 0 ${em(4)} ${em(1)} ${skin.color.shadow} inset`,
-        },
-
-        disabled: {
-          opacity: 0.42
-        }
-      },
-
-      title: {
-        padding:       0,
-        margin:        `${em(-1)} 0 0 0`,
-        fontSize:      em(16),
-        lineHeight:    '1.3em',
-        display:       'inline-block',
-        fontWeight:    'normal',
-        verticalAlign: 'top',
-
-        interactive: {
-          fontSize:   em(18),
-          margin:     `0 0 ${em(15)} 0`,
-          display:    'block',
-          fontWeight: 'bold',
-        },
-      },
-
-      alert: {
-        fontSize:     em(14),
-        lineHeight:   '1.3em',
-        fontWeight:   500,
-        margin:       `0 0 ${em(7)}`,
-        padding:      `${em(16.5)} 0 ${em(17.5)}`,
-        borderRadius: em(5),
-        background:   skin.color.alert_background,
-        color:        skin.color.alert_text,
-        textAlign:    'center',
-      },
-
-      button: {
-        fontSize:     em(14),
-        fontFamily:   skin.font_family,
-        padding:      `${em(4)} ${em(27.5)} ${em(6)}`,
-        marginTop:    em(16),
-        border:       `${em(1)} solid ${skin.color.border}`,
-        borderRadius: em(5),
-        color:        skin.color.title,
-        background:   'transparent',
-        transition:   'color 0.2s',
-        display:      'block',
-
-        enabled: {
-          cursor: 'pointer',
-        },
-
-        disabled: {
-          outline: 'none',
-        },
-
-        greyed_out: {
-          color: skin.color.button_text_grey_out,
-        }
-      },
-
-      stars: {
-        margin:  `0 0 0 ${em(8)}`,
-        padding: 0,
-        display: 'inline',
-        outline: 'none',
-
-        interactive: {
-          margin: em(-4),
-        }
-      },
-
-      star: {
-        padding:    em(3),
-        fontSize:   em(22),
-        color:      skin.color.inactive_star,
-        transition: 'color 0.2s',
-        display:    'inline',
+      item: {
+        fontSize:   em(40),
+        display:    'inline-block',
         listStyle:  'none',
-        userSelect: 'none',
+        margin:     `0 ${em(25)}`,
+        lineHeight: em(40),
+        position:   'relative',
+        transition: 'color 0.25s',
+        cursor:     'pointer',
 
-        interactive: {
-          fontSize: em(27),
-          padding:  em(4),
+        firstname: {
+          fontFamily: skin.font.ubuntu,
+          fontWeight: 700,
+          fontSize:   em(40),
+          fontStyle:  'italic',
         },
 
-        enabled: {
-          cursor: 'pointer',
+        surname: {
+          fontFamily: skin.font.ubuntu,
+          fontWeight: 300,
+          fontSize:   em(40),
         },
 
-        active: {
-          color: skin.color.active_star,
-        },
+        ':hover': {
+          color: '#000000'
+        }
+      },
 
-        blurred: {
-          outline: 'none'
-        },
-      }
+      separator: {
+        display:     'block',
+        position:    'absolute',
+        left:        em(-25),
+        right:       em(-25),
+        top:         '-75%',
+        borderRight: `${em(1)} solid rgba(255, 255, 255, 0.5)`,
+        height:      '250%',
+        transform:   'skew(-15deg)',
+        transition:  'background 0.25s',
+
+        ':hover': {
+          background: 'rgba(255, 255, 255, 0.1)'
+        }
+      },
     }
   }
-}
-
-let instance;
+}, instance;
 
 export default {
-  getInstance() {
+  getInstance(params = DEFAULT_THEME) {
     if (!instance) {
-      instance = new Style();
+      instance = setStyle(params);
     }
     return instance;
   }
