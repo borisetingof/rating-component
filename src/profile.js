@@ -12,27 +12,45 @@ class Profile extends Component {
   }
 
   render() {
-    setTimeout(()=>{
+    setTimeout(() => {
       $(this._avatar).html(
         $(this.props.config.img).css(this.style.profile.content.img)
       );
     }, 0);
 
     return (
-      <div style={[this.style.profile, this.props.config && this.style.profile.visible]}>
+      <div style={[
+        this.style.profile,
+        this.props.config && this.style.profile.visible]}>
 
-        <div style={[this.style.profile.fill, this.props.config && this.style.profile.fill.visible]}/>
+        <div style={[
+          this.style.profile.fill,
+          this.props.config && this.style.profile.fill.visible]}/>
 
-        <div style={[this.style.profile.content, this.props.config && this.style.profile.content.visible]}>
+        <div style={[
+          this.style.profile.content,
+          this.props.config && this.style.profile.content.visible]}>
+
           {this.props.config && <div>
-            <div style={this.style.profile.close} onClick={this.props.onClose.bind(this)}>&#215;</div>
-            <h1 style={this.style.profile.content.title}>{this.props.config.fullname}</h1>
-            <div style={this.style.profile.content.avatar} ref={(el) => {this._avatar = el}} />
-            <div style={this.style.profile.content.bio} dangerouslySetInnerHTML={{__html: this.props.config.bio}}/>
-            <a key='linkedinbtn' style={this.style.profile.content.linkedin} href={this.props.config.linkedin} target='_blank'>View on LinkedIn</a>
+            <div onClick={this.props.onClose.bind(this)}
+                 style={this.style.profile.close}>&#215;</div>
+
+            <h1 style={this.style.profile.content.title}>
+              {this.props.config.fullname}
+            </h1>
+
+            <div ref={(el) => {this._avatar = el}}
+                 style={this.style.profile.content.avatar}/>
+
+            <div dangerouslySetInnerHTML={{__html: this.props.config.bio}}
+                 style={this.style.profile.content.bio}/>
+
+            <a key='linkedinbtn'
+               href={this.props.config.linkedin} target='_blank'
+               style={this.style.profile.content.linkedin}>View on LinkedIn</a>
+
           </div>}
         </div>
-
       </div>
     )
   }

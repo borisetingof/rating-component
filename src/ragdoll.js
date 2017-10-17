@@ -4,21 +4,21 @@ import Skeleton from './skeleton';
 
 class Ragdoll {
   constructor(color, size, x, y) {
-    this.x     = x;
-    this.y     = y;
-    this.color = color;
-    this.size  = size;
-
-    this.frame = 0;
-    this.dir   = 1;
     this.dragging = false;
+
+    this._x     = x;
+    this._y     = y;
+    this._color = color;
+    this._size  = size;
+    this._frame = 0;
+    this._dir   = 1;
 
     this._setPoints();
     this._setLinks();
   }
 
   update(floor) {
-    this.dir = ++this.frame % 20 === 0 ? -this.dir : this.dir;
+    this._dir = ++this._frame % 20 === 0 ? -this._dir : this._dir;
 
     this._updateLinks();
     this._updatePoints(floor);
@@ -53,10 +53,10 @@ class Ragdoll {
     for (let p of Skeleton.points) {
       this.points.push(
         {
-          x:  this.size * p.x + this.x,
-          y:  this.size * p.y + this.y,
-          px: this.size * p.x + this.x,
-          py: this.size * p.y + this.y,
+          x:  this._size * p.x + this._x,
+          y:  this._size * p.y + this._y,
+          px: this._size * p.x + this._x,
+          py: this._size * p.y + this._y,
           vx: 0.0,
           vy: 0.0,
           w:  0.5,
@@ -74,7 +74,7 @@ class Ragdoll {
           dx       = p0.x - p1.x,
           dy       = p0.y - p1.y,
           color    = link.color,
-          size     = link.size * this.size / 3,
+          size     = link.size * this._size / 3,
           force    = link.force || 0.5,
           disk     = link.disk,
           distance = Math.sqrt(dx * dx + dy * dy),
@@ -112,7 +112,7 @@ class Ragdoll {
           size:     size,
           color:    color,
           force:    force,
-          image:    stroke(color || this.color),
+          image:    stroke(color || this._color),
           shadow:   stroke("rgba(0,0,0,0.5)"),
         }
       );
@@ -151,7 +151,7 @@ class Ragdoll {
       }
 
       if(!this.dragging) {
-        point.fn && point.fn(16 * Math.sqrt(this.size), this.dir);
+        point.fn && point.fn(16 * Math.sqrt(this._size), this._dir);
       }
 
       point.vx = point.x - point.px;
@@ -177,7 +177,7 @@ class Ragdoll {
   }
 
   _updateCenter() {
-    let delta = (this.x - this.points[0].x) * 0.0002;
+    let delta = (this._x - this.points[0].x) * 0.0002;
     this.points[this.points.length - 2].x += delta;
     this.points[this.points.length - 1].x += delta;
   }

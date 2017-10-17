@@ -18,7 +18,7 @@ class Ragdolls extends Component {
       active:      null,
     };
 
-    this.style = Style.getInstance();
+    this._style = Style.getInstance();
 
     this._loadData()
       .then(() => {
@@ -89,26 +89,26 @@ class Ragdolls extends Component {
 
   render() {
     return (
-      <div>
         <StyleRoot>
-          {this.state.loaded && <div style={[this.style.container]}>
-            <h1 style={this.style.title}>Lobster</h1>
+          {this.state.loaded && <div style={[this._style.container]}>
             <Dancers
               config={this.state.data}
               active={this.state.highlighted}/>
 
-            <Navigation
-              config={this.state.data}
-              onMouseOver={this.onMouseOver.bind(this)}
-              onMouseOut={this.onMouseOut.bind(this)}
-              onClick={this.onClick.bind(this)}/>
+            <header style={this._style.header}>
+              <h1 style={this._style.title}>Tech</h1>
+              <Navigation
+                config={this.state.data}
+                onMouseOver={this.onMouseOver.bind(this)}
+                onMouseOut={this.onMouseOut.bind(this)}
+                onClick={this.onClick.bind(this)}/>
+            </header>
 
             <Profile
               config={this.state.active !== null && this.state.data[this.state.active]}
               onClose={this.setState.bind(this, {active: null}, null)}/>
           </div>}
         </StyleRoot>
-      </div>
     )
   }
 }

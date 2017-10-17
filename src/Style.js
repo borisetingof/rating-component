@@ -1,27 +1,23 @@
-const DEFAULT_THEME = {
-  color: {
-    title:                '#4A4A4A',
-    active_star:          '#4A90E2',
-    inactive_star:        '#E3E6E9',
-    alert_text:           '#FFFFFF',
-    alert_background:     '#7ED321',
-    button_text_grey_out: '#B9B7B9',
-    border:               '#D2D0D2',
-    shadow:               '#DBDBDB',
-    dancers:              ['#bd3263', '#77a7f8', '#bff877', '#e51c00', '#ff9600']
-  },
-  font:  {
-    lobster: '"Lobster", cursive',
-    ubuntu:  '"Ubuntu", sans-serif'
-  }
-};
-
 /*const screen_sm_min = '768px',
       screen_md_min = '992px',
       screen_lg_min = '1200px',
       screen_xs_max = parseInt(screen_sm_min) - 1 + 'px',
       screen_sm_max = parseInt(screen_md_min) - 1 + 'px',
       screen_md_max = parseInt(screen_lg_min) - 1 + 'px';*/
+
+const DEFAULT_THEME = {
+  color: {
+    title:      '#ffdd64',
+    navigation: '#ffffff',
+    navhover:   '#000000',
+    fill:       '#2abbe7',
+    dancers:    ['#bd3263', '#77a7f8', '#bff877', '#e51c00', '#ff9600']
+  },
+  font:  {
+    lobster: '"Lobster", cursive',
+    ubuntu:  '"Ubuntu", sans-serif'
+  }
+};
 
 let setStyle = (skin) => {
   let default_pixel_size = 16,
@@ -31,7 +27,15 @@ let setStyle = (skin) => {
 
   return {
     container: {
-      fontSize: '16px',
+      position:       'fixed',
+      width:          '100%',
+      height:         '100%',
+      overflow:       'hidden',
+      top:            0,
+      left:           0,
+      display:        'flex',
+      alignItems:     'center',
+      justifyContent: 'center',
     },
 
     dancers: {
@@ -40,26 +44,30 @@ let setStyle = (skin) => {
       left:     0,
     },
 
+    header: {
+      position: 'relative',
+      top:      '-15%'
+    },
+
     title: {
-      padding:      0,
-      marginBottom: rem(100),
-      fontSize:     rem(280),
-      lineHeight:   rem(280),
-      fontFamily:   skin.font.lobster,
-      textAlign:    'center',
-      color:        '#ffdd64',
+      padding:    0,
+      margin:     `0 0 ${rem(70)} 0`,
+      fontSize:   rem(280),
+      lineHeight: '1em',
+      fontFamily: skin.font.lobster,
+      textAlign:  'center',
+      color:      skin.color.title,
     },
 
     navigation: {
       position:  'relative',
       textAlign: 'center',
-      color:     '#ffffff',
+      color:     skin.color.navigation,
 
       item: {
         display:    'inline-block',
-        margin:     `0 ${rem(25)}`,
+        margin:     `0 ${rem(50)}`,
         fontSize:   rem(20),
-        lineHeight: rem(20),
         position:   'relative',
         transition: 'color 0.25s',
         cursor:     'pointer',
@@ -76,7 +84,7 @@ let setStyle = (skin) => {
         },
 
         ':hover': {
-          color: '#000000'
+          color: skin.color.navhover
         },
 
         '@media (min-width: 768px)': {
@@ -88,8 +96,8 @@ let setStyle = (skin) => {
       separator: {
         display:     'block',
         position:    'absolute',
-        left:        rem(-25),
-        right:       rem(-25),
+        left:        rem(-50),
+        right:       rem(-50),
         top:         '-75%',
         borderRight: `${rem(1)} solid rgba(255, 255, 255, 0.5)`,
         height:      '250%',
@@ -105,7 +113,7 @@ let setStyle = (skin) => {
     profile: {
       fontFamily: skin.font.ubuntu,
       fontWeight: 300,
-      color:      '#ffffff',
+      color:      skin.color.navigation,
       visibility: 'hidden',
       position:   'absolute',
       top:        0,
@@ -119,7 +127,7 @@ let setStyle = (skin) => {
       },
 
       fill: {
-        background: '#2abbe7',
+        background: skin.color.fill,
         position:   'fixed',
         top:        0,
         left:       '-150%',
@@ -142,10 +150,11 @@ let setStyle = (skin) => {
         userSelect: 'none',
         top:        0,
         right:      rem(30),
-        color:      '#ffffff',
+        color:      skin.color.navigation,
+        transition: 'color 0.25s',
 
         ':hover': {
-          color: '#ffdd64'
+          color: skin.color.title
         },
       },
 
@@ -190,17 +199,18 @@ let setStyle = (skin) => {
         linkedin: {
           fontSize:       rem(20),
           borderRadius:   rem(28),
-          border:         `${rem(4)} solid #ffffff`,
+          border:         `${rem(4)} solid ${skin.color.navigation}`,
           textDecoration: 'none',
           padding:        `${rem(9)} ${rem(20)} ${rem(11)}`,
           fontWeight:     700,
-          color:          '#ffffff',
+          color:          skin.color.navigation,
           display:        'inline-block',
           marginTop:      rem(80),
+          transition:     'all 0.25s',
 
           ':hover': {
-            color:  '#ffdd64',
-            border: `${rem(4)} solid #ffdd64`,
+            color:  skin.color.title,
+            border: `${rem(4)} solid ${skin.color.title}`,
           },
         },
       }
