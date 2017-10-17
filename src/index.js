@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RatingComponent from './RatingComponent';
 import Ragdolls from './ragdolls';
 import './index.css';
+import '../node_modules/normalize.css/normalize.css';
+
 import registerServiceWorker from './registerServiceWorker';
 
 let callback    = (rating, success, error) => {
