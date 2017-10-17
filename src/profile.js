@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Radium from 'radium';
 import $ from 'jquery';
 
-import Style from './Style';
+import Style from './style';
 
 class Profile extends Component {
 
@@ -27,7 +27,7 @@ class Profile extends Component {
           this.style.profile.fill,
           this.props.config && this.style.profile.fill.visible]}/>
 
-        <div style={[
+        <article style={[
           this.style.profile.content,
           this.props.config && this.style.profile.content.visible]}>
 
@@ -50,7 +50,7 @@ class Profile extends Component {
                style={this.style.profile.content.linkedin}>View on LinkedIn</a>
 
           </div>}
-        </div>
+        </article>
       </div>
     )
   }

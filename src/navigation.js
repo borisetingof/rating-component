@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Radium from 'radium';
 
-import Style from './Style';
+import Style from './style';
 
 class Navigation extends Component {
 

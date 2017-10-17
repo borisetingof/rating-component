@@ -3,8 +3,8 @@ import $ from 'jquery';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 
-import Ragdoll from './ragdoll';
-import Style from './Style';
+import Dancer from './dancer';
+import Style from './style';
 
 class Dancers extends Component {
 
@@ -48,7 +48,7 @@ class Dancers extends Component {
     this._ctx = this._canvas.getContext('2d');
     for (let i = 0; i < this.props.config.length; i++) {
       this._dancers.push(
-        new Ragdoll(
+        new Dancer(
           this._style.skin.color.dancers[i],
           4,
           (i + 2) * this._canvas.width / 8,

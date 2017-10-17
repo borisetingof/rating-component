@@ -4,9 +4,9 @@ import Radium from 'radium';
 import Dancers from './dancers';
 import Profile from './profile';
 import Navigation from './navigation';
-import Style from './Style';
+import Style from './style';
 
-class Ragdolls extends Component {
+class Team extends Component {
 
   constructor(props) {
     super(props);
@@ -27,13 +27,17 @@ class Ragdolls extends Component {
       .then(() => {
         this.setState({loaded: true});
       })
-      .catch((ex) => {});
+      .catch((ex) => {
+        alert('Something went wrong1..')
+      });
   }
 
   _loadData() {
     return fetch(this.props.url)
       .then((response) => {
-        return response.json();
+        if(response.ok) {
+          return response.json();
+        }
       })
       .then((json) => {
         let obj,
@@ -56,7 +60,7 @@ class Ragdolls extends Component {
         this.setState({data: data}, resolve);
 
         return promise;
-      });
+      })
   }
 
   _loadImages() {
@@ -75,15 +79,15 @@ class Ragdolls extends Component {
     }));
   }
 
-  onMouseOver(index) {
+  _onMouseOver(index) {
     this.setState({highlighted: index});
   }
 
-  onMouseOut() {
+  _onMouseOut() {
     this.setState({highlighted: null});
   }
 
-  onClick(index) {
+  _onClick(index) {
     this.setState({active: index});
   }
 
@@ -101,9 +105,9 @@ class Ragdolls extends Component {
               <h1 key='title' style={this._style.title}>Lobster</h1>
               <Navigation
                 config={this.state.data}
-                onMouseOver={this.onMouseOver.bind(this)}
-                onMouseOut={this.onMouseOut.bind(this)}
-                onClick={this.onClick.bind(this)}/>
+                onMouseOver={this._onMouseOver.bind(this)}
+                onMouseOut={this._onMouseOut.bind(this)}
+                onClick={this._onClick.bind(this)}/>
             </header>
 
             <Profile
@@ -115,4 +119,4 @@ class Ragdolls extends Component {
   }
 }
 
-export default Radium(Ragdolls);
+export default Radium(Team);

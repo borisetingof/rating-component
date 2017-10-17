@@ -2,7 +2,7 @@
 
 import Skeleton from './skeleton';
 
-class Ragdoll {
+class Dancer {
   constructor(color, size, x, y) {
     this.dragging = false;
 
@@ -184,4 +184,4 @@ class Ragdoll {
 
 }
 
-export default Ragdoll;
+export default Dancer;

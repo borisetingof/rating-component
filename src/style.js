@@ -76,6 +76,10 @@ let setStyle = (skin) => {
       textAlign: 'center',
       color:     skin.color.navigation,
 
+      '@media (min-width: 768px)': {
+        whiteSpace: 'nowrap',
+      },
+
       item: {
         margin:     `${rem(21)} 0`,
         fontSize:   rem(21),
@@ -110,6 +114,7 @@ let setStyle = (skin) => {
           margin:     `0 ${rem(40)}`,
           fontSize:   rem(30),
           lineHeight: rem(30),
+
         },
 
         '@media (min-width: 1200px)': {
