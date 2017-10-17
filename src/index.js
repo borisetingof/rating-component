@@ -1,32 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Ragdolls from './ragdolls';
+import {StyleRoot} from 'radium';
 import './index.css';
 import '../node_modules/normalize.css/normalize.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
-let callback    = (rating, success, error) => {
-      console.log(`processing rating ${rating}`);
-      setTimeout(() => {
-        console.log(`rating is processed`);
-        success();
-      }, 1000);
-    },
-    custom_skin = {
-      color:       {
-        title:                '#4A4A4A',
-        active_star:          '#4A90E2',
-        inactive_star:        '#E3E6E9',
-        alert_text:           '#FFFFFF',
-        alert_background:     '#7ED321',
-        button_text_grey_out: '#B9B7B9',
-        border:               '#D2D0D2',
-        shadow:               '#DBDBDB',
+let custom_skin = {
+      color: {
+        title:      '#ffdd64',
+        navigation: '#ffffff',
+        navhover:   '#000000',
+        fill:       '#2abbe7',
+        dancers:    ['#e51c4e', '#2d95f0', '#42d73f', '#e51c00', '#fa6629']
       },
-      font_family: '"Helvetica Neue", Helvetica, Arial, sans-serif'
-    };
+      font:  {
+        lobster: '"Lobster", cursive',
+        ubuntu:  '"Ubuntu", sans-serif'
+      }
+    },
+    service_url = 'https://deliver.kenticocloud.com/f838c20b-6429-46dd-89aa-e14f3f5d83ed/items/deepend_technical_team';
 
-// ReactDOM.render(<RatingComponent rating={0} callback={callback} skin={custom_skin}/>, document.getElementById('root'));
-ReactDOM.render(<Ragdolls />, document.getElementById('root'));
+ReactDOM.render(<StyleRoot><Ragdolls skin={custom_skin} url={service_url} /></StyleRoot>, document.getElementById('root'));
 registerServiceWorker();

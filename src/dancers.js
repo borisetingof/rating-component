@@ -50,7 +50,7 @@ class Dancers extends Component {
       this._dancers.push(
         new Ragdoll(
           this._style.skin.color.dancers[i],
-          3,
+          4,
           (i + 2) * this._canvas.width / 8,
           this._canvas.height - 340,
         )

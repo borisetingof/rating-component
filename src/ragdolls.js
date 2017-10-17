@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Radium, {StyleRoot} from 'radium';
 
 import Dancers from './dancers';
 import Profile from './profile';
@@ -18,7 +17,7 @@ class Ragdolls extends Component {
       active:      null,
     };
 
-    this._style = Style.getInstance();
+    this._style = Style.getInstance(this.props.skin);
 
     this._loadData()
       .then(() => {
@@ -31,7 +30,7 @@ class Ragdolls extends Component {
   }
 
   _loadData() {
-    return fetch('https://deliver.kenticocloud.com/f838c20b-6429-46dd-89aa-e14f3f5d83ed/items/deepend_technical_team')
+    return fetch(this.props.url)
       .then((response) => {
         return response.json();
       })
@@ -89,14 +88,16 @@ class Ragdolls extends Component {
 
   render() {
     return (
-        <StyleRoot>
-          {this.state.loaded && <div style={[this._style.container]}>
+      <div>
+          {this.state.loaded && <div style={[
+            this._style.container
+          ]}>
             <Dancers
               config={this.state.data}
               active={this.state.highlighted}/>
 
             <header style={this._style.header}>
-              <h1 style={this._style.title}>Tech</h1>
+              <h1 key='title' style={this._style.title}>Lobster</h1>
               <Navigation
                 config={this.state.data}
                 onMouseOver={this.onMouseOver.bind(this)}
@@ -108,7 +109,7 @@ class Ragdolls extends Component {
               config={this.state.active !== null && this.state.data[this.state.active]}
               onClose={this.setState.bind(this, {active: null}, null)}/>
           </div>}
-        </StyleRoot>
+      </div>
     )
   }
 }

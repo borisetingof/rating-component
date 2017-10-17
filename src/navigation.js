@@ -34,7 +34,7 @@ class Navigation extends Component {
             <span style={this.style.navigation.item.firstname}>
               {params.firstname}
             </span>
-            <br/>
+            <br style={this.style.navigation.br} />
 
             <span style={this.style.navigation.item.surname}>
               {params.surname}
