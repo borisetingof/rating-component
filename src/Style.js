@@ -16,6 +16,13 @@ const DEFAULT_THEME = {
   }
 };
 
+/*const screen_sm_min = '768px',
+      screen_md_min = '992px',
+      screen_lg_min = '1200px',
+      screen_xs_max = parseInt(screen_sm_min) - 1 + 'px',
+      screen_sm_max = parseInt(screen_md_min) - 1 + 'px',
+      screen_md_max = parseInt(screen_lg_min) - 1 + 'px';*/
+
 let setStyle = (skin) => {
   let default_pixel_size = 16,
       rem                = (px) => {
@@ -49,10 +56,10 @@ let setStyle = (skin) => {
       color:     '#ffffff',
 
       item: {
-        fontSize:   rem(40),
         display:    'inline-block',
         margin:     `0 ${rem(25)}`,
-        lineHeight: rem(40),
+        fontSize:   rem(20),
+        lineHeight: rem(20),
         position:   'relative',
         transition: 'color 0.25s',
         cursor:     'pointer',
@@ -60,19 +67,22 @@ let setStyle = (skin) => {
         firstname: {
           fontFamily: skin.font.ubuntu,
           fontWeight: 700,
-          fontSize:   rem(40),
           fontStyle:  'italic',
         },
 
         surname: {
           fontFamily: skin.font.ubuntu,
           fontWeight: 300,
-          fontSize:   rem(40),
         },
 
         ':hover': {
           color: '#000000'
-        }
+        },
+
+        '@media (min-width: 768px)': {
+          fontSize:   rem(40),
+          lineHeight: rem(40),
+        },
       },
 
       separator: {
