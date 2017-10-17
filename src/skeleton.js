@@ -91,24 +91,24 @@ export default {
   links:  [
     //arm
     {p0: 3, p1: 7, size: 12, color: '#ffffff'},
-    {p0: 1, p1: 3, size: 24, color: '#bd3263'},
+    {p0: 1, p1: 3, size: 24},
 
     //head
     {p0: 1, p1: 0, size: 60, color: '#ffffff', disk: 1},
 
     //leg
     {p0: 5, p1: 9, size: 16, color: '#ffffff'},
-    {p0: 2, p1: 5, size: 32, color: '#bd3263'},
+    {p0: 2, p1: 5, size: 32},
 
     //body
-    {p0: 1, p1: 2, size: 50, color: '#bd3263'},
+    {p0: 1, p1: 2, size: 50},
 
     //leg
     {p0: 6, p1: 10, size: 16, color: '#ffffff'},
-    {p0: 2, p1: 6, size: 32, color: '#bd3263'},
+    {p0: 2, p1: 6, size: 32},
 
     //arm
     {p0: 4, p1: 8, size: 12, color: '#ffffff'},
-    {p0: 1, p1: 4, size: 24, color: '#bd3263'}
+    {p0: 1, p1: 4, size: 24}
   ]
 };

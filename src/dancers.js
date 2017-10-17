@@ -46,11 +46,10 @@ class Dancers extends Component {
     this._resize();
 
     this._ctx = this._canvas.getContext('2d');
-    for (let i = this.props.config.length; i--;) {
+    for (let i = 0; i < this.props.config.length; i++) {
       this._dancers.push(
         new Ragdoll(
-          i * 360 / 7,
-          80,
+          this._style.skin.color.dancers[i],
           4,
           (i + 2) * this._canvas.width / 9,
           this._canvas.height - 340,

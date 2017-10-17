@@ -8,6 +8,7 @@ const DEFAULT_THEME = {
     button_text_grey_out: '#B9B7B9',
     border:               '#D2D0D2',
     shadow:               '#DBDBDB',
+    dancers:              ['#bd3263', '#77a7f8', '#bff877', '#e51c00', '#ff9600']
   },
   font:  {
     lobster: '"Lobster", cursive',
@@ -193,7 +194,9 @@ let setStyle = (skin) => {
           },
         },
       }
-    }
+    },
+
+    skin: skin
   }
 }, instance;
 

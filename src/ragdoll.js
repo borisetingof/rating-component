@@ -1,15 +1,13 @@
-// import fetch from 'whatwg-fetch';
 //https://gamedevelopment.tutsplus.com/tutorials/simulate-tearable-cloth-and-ragdolls-with-simple-verlet-integration--gamedev-519
 
 import Skeleton from './skeleton';
 
 class Ragdoll {
-  constructor(color, light, size, x, y) {
+  constructor(color, size, x, y) {
     this.x     = x;
     this.y     = y;
+    this.color = color;
     this.size  = size;
-    this.light = light;
-    this.color = Math.round(color);
 
     this.frame = 0;
     this.dir   = 1;
@@ -114,7 +112,7 @@ class Ragdoll {
           size:     size,
           color:    color,
           force:    force,
-          image:    stroke(color),
+          image:    stroke(color || this.color),
           shadow:   stroke("rgba(0,0,0,0.5)"),
         }
       );
