@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Radium from 'radium';
 
 import Dancers from './dancers';
 import Profile from './profile';
