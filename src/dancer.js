@@ -1,4 +1,7 @@
-//https://gamedevelopment.tutsplus.com/tutorials/simulate-tearable-cloth-and-ragdolls-with-simple-verlet-integration--gamedev-519
+/*
+  The code is based on the article below
+  https://gamedevelopment.tutsplus.com/tutorials/simulate-tearable-cloth-and-ragdolls-with-simple-verlet-integration--gamedev-519
+ */
 
 import Skeleton from './skeleton';
 
@@ -181,7 +184,6 @@ class Dancer {
     this.points[this.points.length - 2].x += delta;
     this.points[this.points.length - 1].x += delta;
   }
-
 }
 
 export default Dancer;

@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Team from './team';
 import {StyleRoot} from 'radium';
-import './index.css';
 import '../node_modules/normalize.css/normalize.css';
+
+import Team from './team';
 
 import registerServiceWorker from './registerServiceWorker';
 
 let custom_skin = {
       color: {
+        background: '#fc749a',
         title:      '#ffdd64',
         navigation: '#ffffff',
         navhover:   '#000000',
@@ -22,5 +23,5 @@ let custom_skin = {
     },
     service_url = 'https://deliver.kenticocloud.com/f838c20b-6429-46dd-89aa-e14f3f5d83ed/items/deepend_technical_team';
 
-ReactDOM.render(<StyleRoot><Team skin={custom_skin} url={service_url}/></StyleRoot>, document.getElementById('root'));
+ReactDOM.render(<StyleRoot><Team url={service_url} skin={custom_skin}/></StyleRoot>, document.getElementById('root'));
 registerServiceWorker();

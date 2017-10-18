@@ -5,10 +5,6 @@ import Style from './style';
 
 class Navigation extends Component {
 
-  static defaultProps = {
-    config: []
-  };
-
   constructor(props) {
     super(props);
     this.style = Style.getInstance();

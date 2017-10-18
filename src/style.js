@@ -1,5 +1,6 @@
 const DEFAULT_THEME = {
   color: {
+    background: '#fc749a',
     title:      '#ffdd64',
     navigation: '#ffffff',
     navhover:   '#000000',
@@ -20,12 +21,14 @@ let setStyle = (skin) => {
 
   return {
     container: {
-      position:  'fixed',
-      width:     '100%',
-      height:    '100%',
-      overflowY: 'scroll',
-      top:       0,
-      left:      0,
+      position:   'fixed',
+      width:      '100%',
+      height:     '100%',
+      overflowY:  'scroll',
+      overflowX:  'hidden',
+      top:        0,
+      left:       0,
+      background: skin.color.background,
 
       '@media (min-width: 768px)': {
         display:        'flex',
@@ -238,7 +241,7 @@ let setStyle = (skin) => {
           border:       `${rem(15)} solid rgba(255, 255, 255, 0.5)`,
 
           '@media (min-width: 768px)': {
-            margin:       `0 auto ${rem(40)}`,
+            margin: `0 auto ${rem(40)}`,
 
           },
         },
@@ -251,22 +254,22 @@ let setStyle = (skin) => {
         title: {
           fontFamily: skin.font.lobster,
           fontSize:   rem(50),
-          lineHeight:   rem(50),
+          lineHeight: rem(50),
           padding:    `${rem(40)} 0 ${rem(20)} 0`,
           margin:     0,
 
           '@media (min-width: 768px)': {
             fontSize:   rem(60),
-            lineHeight:   rem(60),
+            lineHeight: rem(60),
           },
         },
 
         bio: {
           textAlign: 'left',
-          fontSize:   rem(14),
+          fontSize:  rem(14),
 
           '@media (min-width: 768px)': {
-            fontSize:   rem(16),
+            fontSize: rem(16),
           },
         },
 
@@ -292,8 +295,8 @@ let setStyle = (skin) => {
           },
 
           '@media (min-width: 768px)': {
-            marginTop:      rem(80),
-            fontSize:   rem(20),
+            marginTop: rem(80),
+            fontSize:  rem(20),
           },
         },
       }

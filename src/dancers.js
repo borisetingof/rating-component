@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import Radium from 'radium';
-import PropTypes from 'prop-types';
 
 import Dancer from './dancer';
 import Style from './style';
 
 class Dancers extends Component {
-
-  static defaultProps = {
-    config: []
-  };
 
   constructor(props) {
     super(props);
@@ -50,7 +45,7 @@ class Dancers extends Component {
       this._dancers.push(
         new Dancer(
           this._style.skin.color.dancers[i],
-          4,
+          3.6,
           (i + 2) * this._canvas.width / 8,
           this._canvas.height - 340,
         )

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Radium from 'radium';
+import PropTypes from 'prop-types';
 
 import Dancers from './dancers';
 import Profile from './profile';
@@ -7,6 +8,11 @@ import Navigation from './navigation';
 import Style from './style';
 
 class Team extends Component {
+
+  static propTypes = {
+    url:  PropTypes.string.isRequired,
+    skin: PropTypes.object,
+  };
 
   constructor(props) {
     super(props);
@@ -35,7 +41,7 @@ class Team extends Component {
   _loadData() {
     return fetch(this.props.url)
       .then((response) => {
-        if(response.ok) {
+        if (response.ok) {
           return response.json();
         }
       })
@@ -94,26 +100,24 @@ class Team extends Component {
   render() {
     return (
       <div>
-          {this.state.loaded && <div style={[
-            this._style.container
-          ]}>
-            <Dancers
+        {this.state.loaded && <div style={this._style.container}>
+          <Dancers
+            config={this.state.data}
+            active={this.state.highlighted}/>
+
+          <header style={this._style.header}>
+            <h1 key='title' style={this._style.title}>Team</h1>
+            <Navigation
               config={this.state.data}
-              active={this.state.highlighted}/>
+              onMouseOver={this._onMouseOver.bind(this)}
+              onMouseOut={this._onMouseOut.bind(this)}
+              onClick={this._onClick.bind(this)}/>
+          </header>
 
-            <header style={this._style.header}>
-              <h1 key='title' style={this._style.title}>Lobster</h1>
-              <Navigation
-                config={this.state.data}
-                onMouseOver={this._onMouseOver.bind(this)}
-                onMouseOut={this._onMouseOut.bind(this)}
-                onClick={this._onClick.bind(this)}/>
-            </header>
-
-            <Profile
-              config={this.state.active !== null && this.state.data[this.state.active]}
-              onClose={this.setState.bind(this, {active: null}, null)}/>
-          </div>}
+          <Profile
+            config={this.state.active !== null && this.state.data[this.state.active]}
+            onClose={this.setState.bind(this, {active: null}, null)}/>
+        </div>}
       </div>
     )
   }

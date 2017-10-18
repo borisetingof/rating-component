@@ -1,94 +1,84 @@
-rating-component
+tech-team
 ================
 
-Interactive star rating component
+Team info component
 
-## Installation
+## Installation with yarn
 ```sh
 $ yarn install
 $ yarn start
 ```
 
+## Installation with npm
+```sh
+$ npm install
+$ npm start
+```
+
 ## Overview & Basic Example
-`<RatingComponent />` renders configurable interactive star rating widget or non-interactive rating display element.
+`<Team />` renders configurable interactive team page.
 
 app.js
 ```js
 import React from 'react';
-import RatingComponent from 'rating-component';
+import {StyleRoot} from 'radium';
+
+import Team from 'tech-team';
 ...
 
 class App extends React.Component ({
   render() {
-      let callback     = (rating, success, error) => {
-            console.log(`processing rating ${rating}`);
-            setTimeout(() => {
-              console.log(`rating is processed`);
-              success();
-            }, 1000);
+    let custom_skin = {
+          color: {
+            background: '#fc749a',
+            title:      '#ffdd64',
+            navigation: '#ffffff',
+            navhover:   '#000000',
+            fill:       '#2abbe7',
+            dancers:    ['#e51c4e', '#2d95f0', '#42d73f', '#e51c00', '#fa6629']
           },
-          custom_skin = {
-            color:       {
-              title:                '#4A4A4A',
-              active_star:          '#4A90E2',
-              inactive_star:        '#E3E6E9',
-              alert_text:           '#FFFFFF',
-              alert_background:     '#7ED321',
-              button_text_grey_out: '#B9B7B9',
-              border:               '#D2D0D2',
-              shadow:               '#DBDBDB',
-            },
-            font_family: '"Helvetica Neue", Helvetica, Arial, sans-serif'
-          };
+          font:  {
+            lobster: '"Lobster", cursive',
+            ubuntu:  '"Ubuntu", sans-serif'
+          }
+        },
+        service_url = 'https://deliver.kenticocloud.com/f838c20b-6429-46dd-89aa-e14f3f5d83ed/items/deepend_technical_team';
 
     return (
-      <RatingComponent rating={0} callback={callback} skin={custom_skin}/>
+        <StyleRoot><Team url={service_url} skin={custom_skin}/></StyleRoot>
     );
   },
 });
 
 ```
 
-### `<RatingComponent />` Props
+### `<Team />` Props
 
-#### rating _(default: 0)_
-Set initial rating between `0` and `5` inclusive. Rating set to `0` means `no rating`. `Apply` button is disabled when rating equals to `0` and is enabled when rating is greater than `0`. Initial rating can be set for both interactive and non-interactive states.
-
-Example:
-```js
-<RatingComponent rating={0}/>
-```
-
-#### callback _(function)_
-The component is rendered as interactive widget when the callback function is defined. Callback function gets executed with `rating` passed as a parameter along with `success` and `error` hooks when `Apply` button is pressed. Callback function can be used to process/store the selected rating.
+#### url _(string: Required)_
+Set service url.
 
 Example:
 ```js
-<RatingComponent callback={(rating, success, error) => {
-    console.log(`processing rating ${rating}`);
-    setTimeout(() => {
-      console.log(`rating is processed`);
-      success();
-    }, 1000);
-}}/>
+<Team url={'https://deliver.kenticocloud.com/f838c20b-6429-46dd-89aa-e14f3f5d83ed/items/deepend_technical_team'}/>
 ```
 
-#### skin _(object)_
+#### skin _(object: Optional)_
 Set custom skin.
 
 Example:
 ```js
-<RatingComponent skin={{
-  color:       {
-    title:                '#4A4A4A',
-    active_star:          '#4A90E2',
-    inactive_star:        '#E3E6E9',
-    alert_text:           '#FFFFFF',
-    alert_background:     '#7ED321',
-    button_text_grey_out: '#B9B7B9',
-    border:               '#D2D0D2',
-    shadow:               '#DBDBDB',
-  },
-  font_family: '"Helvetica Neue", Helvetica, Arial, sans-serif'
+<Team skin={{
+ color: {
+   background: '#fc749a',
+   title:      '#ffdd64',
+   navigation: '#ffffff',
+   navhover:   '#000000',
+   fill:       '#2abbe7',
+   dancers:    ['#e51c4e', '#2d95f0', '#42d73f', '#e51c00', '#fa6629']
+ },
+ font:  {
+   lobster: '"Lobster", cursive',
+   ubuntu:  '"Ubuntu", sans-serif'
+ }
 }}/>
 ```
